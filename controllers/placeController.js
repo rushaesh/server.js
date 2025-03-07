@@ -64,6 +64,33 @@ exports.deletePlace = async (req, res) => {
     }
 };
 
+exports.getMostVisitedPlaces = async (req, res) => {
+    try {
+        const mostVisitedPlaces = await Place.find({ mostVisited: true });
+        res.status(200).json({ status: "success", data: mostVisitedPlaces });
+    } catch (error) {
+        res.status(500).json({ status: "error", message: error.message });
+    }
+};
+
+exports.getPopularPlaces = async (req, res) => {
+    try {
+        const popularPlaces = await Place.find({ popular: true });
+        res.status(200).json({ status: "success", data: popularPlaces });
+    } catch (error) {
+        res.status(500).json({ status: "error", message: error.message });
+    }
+};
+exports.getRecommendedPlaces = async (req, res) => {
+    try {
+        const recommendedPlaces = await Place.find({ recommended: true });
+        res.status(200).json({ status: "success", data: recommendedPlaces });
+    } catch (error) {
+        res.status(500).json({ status: "error", message: error.message });
+    }
+};
+
+
 exports.addReview = async (req, res) => {
     try {
         const { user, rating, comment } = req.body;
