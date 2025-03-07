@@ -75,12 +75,15 @@ exports.getMostVisitedPlaces = async (req, res) => {
 
 exports.getPopularPlaces = async (req, res) => {
     try {
+        // Fetch only places where 'popular' is true
         const popularPlaces = await Place.find({ popular: true });
+
         res.status(200).json({ status: "success", data: popularPlaces });
     } catch (error) {
         res.status(500).json({ status: "error", message: error.message });
     }
 };
+
 exports.getRecommendedPlaces = async (req, res) => {
     try {
         const recommendedPlaces = await Place.find({ recommended: true });
