@@ -20,8 +20,8 @@ const PlaceSchema = new mongoose.Schema({
     excursionTourPrice: { type: Number, required: true },
     booked: { type: Boolean, default: false },
     favorite: { type: Boolean, default: false },
-    popular: { type: Boolean, default: false },  // ✅ New field
-    recommended: { type: Boolean, default: false },  // ✅ New field
+    popular: { type: Boolean, default: false },  
+    recommended: { type: Boolean, default: false }, 
     mostVisited: { type: Boolean, default: false },
     reviews: [ReviewSchema]
 });
