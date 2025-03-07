@@ -21,6 +21,9 @@ const PlaceSchema = new mongoose.Schema({
     booked: { type: Boolean, default: false },
     favorite: { type: Boolean, default: false },
     reviews: [ReviewSchema]
+    popular: { type: Boolean, default: false },  // ✅ New field
+    recommended: { type: Boolean, default: false },  // ✅ New field
+    mostVisited: { type: Boolean, default: false }  // ✅ New field
 });
 
 module.exports = mongoose.model("Place", PlaceSchema);
