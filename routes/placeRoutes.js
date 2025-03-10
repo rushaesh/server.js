@@ -4,9 +4,12 @@ const placeController = require("../controllers/placeController");
 
 router.post("/", placeController.addPlaces);
 router.get("/", placeController.getAllPlaces);
-router.get("/:id", placeController.getPlaceById);
+router.get("/popular", placeController.getPopularPlaces);
+router.get("/recommended", placeController.getRecommendedPlaces);
+router.get("/most-visited", placeController.getMostVisitedPlaces);
 router.put("/:id", placeController.updatePlace);
 router.delete("/:id", placeController.deletePlace);
-router.post("/:id/reviews", placeController.addReview);
+router.post("/:id/book", placeController.bookPlace);
+router.post("/:id/review", placeController.addReview);
 
 module.exports = router;

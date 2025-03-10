@@ -63,7 +63,48 @@ exports.deletePlace = async (req, res) => {
         res.status(500).json({ status: "error", message: error.message });
     }
 };
+exports.getPopularPlaces = async (req, res) => {
+    try {
+        const popularPlaces = await Place.find({ rate: { $gte: 4.5 } });
+        res.status(200).json({ status: "success", data: popularPlaces });
+    } catch (error) {
+        res.status(500).json({ status: "error", message: error.message });
+    }
+};
 
+// ✅ Get only Recommended Places (Price < 500)
+exports.getRecommendedPlaces = async (req, res) => {
+    try {
+        const recommendedPlaces = await Place.find({ price: { $lt: 500 } });
+        res.status(200).json({ status: "success", data: recommendedPlaces });
+    } catch (error) {
+        res.status(500).json({ status: "error", message: error.message });
+    }
+};
+
+// ✅ Get only Most Visited Places (Top 10 by visitors)
+exports.getMostVisitedPlaces = async (req, res) => {
+    try {
+        const mostVisitedPlaces = await Place.find().sort({ visitors: -1 }).limit(100);
+        res.status(200).json({ status: "success", data: mostVisitedPlaces });
+    } catch (error) {
+        res.status(500).json({ status: "error", message: error.message });
+    }
+};
+exports.bookPlace = async (req, res) => {
+    try {
+        const place = await Place.findById(req.params.id);
+        if (!place) {
+            return res.status(404).json({ status: "error", message: "Place not found" });
+        }
+
+        place.visitors += 1;
+        await place.save();
+        res.status(200).json({ status: "success", data: place });
+    } catch (error) {
+        res.status(500).json({ status: "error", message: error.message });
+    }
+};
 exports.addReview = async (req, res) => {
     try {
         const { user, rating, comment } = req.body;
