@@ -1,5 +1,23 @@
 const Place = require("../models/Place");
 
+// ✅ Get Place by ID
+exports.getPlaceById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // ✅ Find place by ID
+        const place = await Place.findById(id);
+
+        if (!place) {
+            return res.status(404).json({ status: "error", message: "Place not found" });
+        }
+
+        res.status(200).json({ status: "success", data: place });
+    } catch (error) {
+        res.status(500).json({ status: "error", message: error.message });
+    }
+};
+
 // ✅ Add a new place (POST)
 exports.addPlaces = async (req, res) => {
     try {
