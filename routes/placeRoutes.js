@@ -3,6 +3,7 @@ const router = express.Router();
 const placeController = require("../controllers/placeController");
 
 router.post("/", placeController.addPlaces);
+router.get("/:id", getPlaceById);
 router.get("/", placeController.getAllPlaces);
 router.get("/popular", placeController.getPopularPlaces);
 router.get("/recommended", placeController.getRecommendedPlaces);
