@@ -18,6 +18,7 @@ const PlaceSchema = new mongoose.Schema({
     independentTourPrice: { type: Number, required: true },
     hostedTourPrice: { type: Number, required: true },
     excursionTourPrice: { type: Number, required: true },
+    category: { type: String, required: true },
     booked: { type: Boolean, default: false },
     favorite: { type: Boolean, default: false },
     reviews: [ReviewSchema]
