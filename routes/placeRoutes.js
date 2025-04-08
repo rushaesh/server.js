@@ -4,10 +4,11 @@ const placeController = require("../controllers/placeController");
 const { getPlaceById } = require("../controllers/placeController");
 
 router.post("/", placeController.addPlaces);
+router.get("/:id", getPlaceById);
+router.get("/", placeController.getAllPlaces);
 router.get("/popular", placeController.getPopularPlaces);
 router.get("/recommended", placeController.getRecommendedPlaces);
 router.get("/most-visited", placeController.getMostVisitedPlaces);
-router.get("/:id", getPlaceById);  // Generic route at the end
 router.put("/:id", placeController.updatePlace);
 router.delete("/:id", placeController.deletePlace);
 router.post("/:id/book", placeController.bookPlace);
