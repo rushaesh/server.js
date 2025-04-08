@@ -84,7 +84,11 @@ exports.deletePlace = async (req, res) => {
 exports.getPopularPlaces = async (req, res) => {
     try {
         const popularPlaces = await Place.find({ rate: { $gte: 4.5 } });
-        res.status(200).json({ status: "success", data: popularPlaces });
+
+        res.status(200).json({
+            status: "success",
+            data: popularPlaces
+        });
     } catch (error) {
         res.status(500).json({ status: "error", message: error.message });
     }
